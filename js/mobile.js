@@ -2,18 +2,27 @@ const searchmobile = () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
     // console.log(searchText);
+    // clear data
     searchField.value ='';
+    if(searchText == ''){
+        let empty = document.getElementById('em');
+        empty.style.display='block';
+    }
+  else{
+        // load data
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText} `;
 
-     fetch(url)
-    .then(res => res.json())
-    .then(data => displaySearchResult(data.data));
+    fetch(url)
+   .then(res => res.json())
+   .then(data => displaySearchResult(data.data));
+  }
 }
 
 const displaySearchResult = data => {
     // console.log(data);
-
+     
     const searchResult = document.getElementById('search-result');
+    searchResult.textContent ='';
     data.forEach(datas => {
         // console.log(datas);
         const div = document.createElement('div');
